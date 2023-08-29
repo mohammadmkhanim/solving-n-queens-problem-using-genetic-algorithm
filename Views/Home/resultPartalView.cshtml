@@ -1,0 +1,39 @@
+@model NQueensGeneticAlgorithmMVC.Models.GeneticAlgorithmViewModel;
+@using NQueensGeneticAlgorithmMVC.Controllers;
+
+@{
+Layout = "";
+var averageFitness = Model.resultPopulation.Average(m => GeneticAlgorithm.CalculateFitness(m));
+var bestAnswer = Model.resultPopulation.MinBy(m => GeneticAlgorithm.CalculateFitness(m));
+var bestAnswerFitness = GeneticAlgorithm.CalculateFitness(bestAnswer);
+}
+<div class="mt-5 px-5">
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">population size: @Model.populationSize</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">generation progress count: @Model.generationLength</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">mutation rate: @Model.mutationRate</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">roulette wheel size: @Model.rouletteMembersCount</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">tournament size: @Model.tournamentMembersCount</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">algorithm method: @Model.geneticAlgorithmWay</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">mutation method: @Model.geneticAlgorithmMutationWay</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">crossover method: @Model.geneticAlgorithmCrossOverWay</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">selection method: @Model.geneticSelectionWay</p>
+
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">average fitness: @averageFitness</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">best answer fitness: @bestAnswerFitness</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">elapsed time: @Model.time</p>
+    <p class="block tracking-wide text-gray-700 text-xs font-bold mb-2">best answer:</p>
+    <div class="chessboard" id="@Model.id" dir="ltr">
+    </div>
+</div>
+
+<span class="w-full p-0.5 bg-green-600 lg:w-1/3 mt-5"></span>
+
+
+<script>
+    n = @Model.n;
+    createChessboard(n, '@Model.id')
+</script>
+@for (int i = 0; i < @Model.n; i++) { <script>
+    setMinisterPosition(@i,@bestAnswer[i],'@Model.id');
+    </script>
+    }

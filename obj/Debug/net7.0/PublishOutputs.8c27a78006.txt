@@ -1,0 +1,9 @@
+F:\NQueensGeneticAlgorithmMVC\bin\Debug\net7.0\publish\NQueensGeneticAlgorithmMVC.exe
+F:\NQueensGeneticAlgorithmMVC\bin\Debug\net7.0\publish\appsettings.Development.json
+F:\NQueensGeneticAlgorithmMVC\bin\Debug\net7.0\publish\appsettings.json
+F:\NQueensGeneticAlgorithmMVC\bin\Debug\net7.0\publish\NQueensGeneticAlgorithmMVC.dll
+F:\NQueensGeneticAlgorithmMVC\bin\Debug\net7.0\publish\NQueensGeneticAlgorithmMVC.deps.json
+F:\NQueensGeneticAlgorithmMVC\bin\Debug\net7.0\publish\NQueensGeneticAlgorithmMVC.runtimeconfig.json
+F:\NQueensGeneticAlgorithmMVC\bin\Debug\net7.0\publish\NQueensGeneticAlgorithmMVC.pdb
+F:\NQueensGeneticAlgorithmMVC\bin\Debug\net7.0\publish\AutoMapper.dll
+F:\NQueensGeneticAlgorithmMVC\bin\Debug\net7.0\publish\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

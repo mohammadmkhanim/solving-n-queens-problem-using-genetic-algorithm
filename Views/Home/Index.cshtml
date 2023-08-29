@@ -1,0 +1,160 @@
+﻿@model NQueensGeneticAlgorithmMVC.Models.GeneticAlgorithmViewModel
+
+
+@{
+ViewData["Title"] = "Home Page";
+}
+
+
+<div class="flex justify-center mt-5">
+    <form asp-action="Index" data-ajax="true" data-ajax-begin="addClassToElement([['submit-button','hidden']]) + removeClassFromElement([['loading-icon','hidden']])" 
+    data-ajax-complete="removeClassFromElement([['submit-button','hidden']]) + addClassToElement([['loading-icon','hidden']])"
+    data-ajax-update="#results" data-ajax-mode="after" class="w-full max-w-lg">
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label asp-for="populationSize"
+                    class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <input asp-for="populationSize" value="100"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <label asp-for="n" class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <input asp-for="n" value="8"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            </div>
+        </div>
+
+
+        <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/2 px-3 mb-2">
+                <label asp-for="generationLength"
+                    class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <input asp-for="generationLength" value="100"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <label asp-for="mutationRate"
+                    class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <input asp-for="mutationRate" value="0.2"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            </div>
+        </div>
+
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label asp-for="rouletteMembersCount"
+                    class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <input asp-for="rouletteMembersCount" value="10"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <label asp-for="tournamentMembersCount"
+                    class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <input asp-for="tournamentMembersCount" value="10"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            </div>
+        </div>
+
+
+        <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-full px-3">
+                <label asp-for="geneticAlgorithmWay"
+                    class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <div class="relative mb-2">
+                    <select asp-for="geneticAlgorithmWay"
+                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="Standard">standard</option>
+                        <option value="Permutation">permutation</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="w-full md:w-full px-3 mb-2">
+                <label asp-for="geneticAlgorithmMutationWay"
+                    class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <div class="relative">
+                    <select asp-for="geneticAlgorithmMutationWay"
+                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="Standard">standard</option>
+                        <option value="ChangePosition">change position</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="w-full md:w-full px-3 mb-2">
+                <label asp-for="geneticAlgorithmCrossOverWay"
+                    class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <div class="relative">
+                    <select asp-for="geneticAlgorithmCrossOverWay"
+                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="SinglePoint">single point</option>
+                        <option value="OrderBasedUniformity">order based uniformity</option>
+                        <option value="Uniformity">uniformity</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="w-full md:w-full px-3 mb-2">
+                <label asp-for="geneticSelectionWay"
+                    class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </label>
+                <div class="relative">
+                    <select asp-for="geneticSelectionWay"
+                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="Standard">standard</option>
+                        <option value="TournamentSelection">tournament selection</option>
+                        <option value="RouletteWheelSelection">roulette wheel selection</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <button
+            class="w-[70px] flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
+            <span id="submit-button">submit</span>
+            <i id="loading-icon" class="fa-solid fa-spinner fa-spin hidden"></i>
+        </button>
+    </form>
+
+</div>
+    <div id="results" class="flex justify-center items-center flex-col">
+
+    </div>
+
+
+
+
+
